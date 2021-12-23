@@ -20,14 +20,14 @@ public class StorageController {
         this.storageService = storageService;
     }
 
-//    @GetMapping("/all")
-//    public List<Storage> getAll() {
-//        return storageService.getAll();
-//    }
+    @GetMapping("/all")
+    public List<Storage> getAll() {
+        return storageService.getAll();
+    }
 
-    @GetMapping
-    public Storage getDeliveryInfoByID(Long itemID) {
-        return storageService.getDeliveryInfoByID(itemID);
+    @GetMapping("/{id}")
+    public Storage getById(@PathVariable(required = true) Long id) {
+        return storageService.getDeliveryInfoByID(id);
     }
 }
 
