@@ -22,7 +22,9 @@ public class StorageService {
     }
 
     public Storage getDeliveryInfoByID(Long itemID) {
-        return storageRepository.getById(itemID);
+        Optional<Storage> optionalStorage = storageRepository.findById(itemID);
+        //TODO create custom exception e.g. StorageNotFoundException
+        return optionalStorage.orElseThrow(() -> new NullPointerException("No storage found"));
     }
 
     public List<Storage> getAll() {

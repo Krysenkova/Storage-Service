@@ -13,8 +13,6 @@ import javax.persistence.*;
 public class Storage {
 
     @Id
-    //sequence generator? do we need it?
-    //@GeneratedValue(generator = "uuid")
     @Column(name = "item_id")   //do not know if we really need column annotations
     private Long itemId;
     @Column(name = "deliverytime")
