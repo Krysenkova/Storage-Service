@@ -1,5 +1,6 @@
 package com.example.storageservice.storage;
 
+import com.example.storageservice.models.DeliveryInfoList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class StorageController {
     }
 
     @GetMapping("/all")
-    public List<Storage> getAll() {
+    public DeliveryInfoList getAll() {
         return storageService.getAll();
     }
 
