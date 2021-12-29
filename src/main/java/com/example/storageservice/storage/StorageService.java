@@ -1,5 +1,6 @@
 package com.example.storageservice.storage;
 
+import com.example.storageservice.models.DeliveryInfoList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -27,8 +28,8 @@ public class StorageService {
         return optionalStorage.orElseThrow(() -> new NullPointerException("No storage found"));
     }
 
-    public List<Storage> getAll() {
-        return storageRepository.findAll();
+    public DeliveryInfoList getAll() {
+        return new DeliveryInfoList(storageRepository.findAll());
     }
 
 }
