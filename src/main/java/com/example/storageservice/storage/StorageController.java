@@ -6,9 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping(path = "api/storage")
 public class StorageController {
@@ -29,6 +26,11 @@ public class StorageController {
     @GetMapping("/{id}")
     public Storage getById(@PathVariable(required = true) Long id) {
         return storageService.getDeliveryInfoByID(id);
+    }
+
+    @GetMapping("/download")
+    public String downloadFile(){
+      return storageService.downloadCsv();
     }
 }
 
