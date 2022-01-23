@@ -24,7 +24,7 @@ public class CsvReader {
         try (BufferedReader br = Files.newBufferedReader(path, StandardCharsets.US_ASCII)) {
             String line = br.readLine();
             while (line != null) {
-                String[] attributes = line.split(", ");
+                String[] attributes = line.split("; ");
                 Long itemId = Long.parseLong(attributes[0]);
                 String name = attributes[1];
                 String description = attributes[2];
