@@ -1,8 +1,7 @@
 package com.example.storageservice.storage;
 
-import com.example.storageservice.allProducts.AllInfoList;
 import com.example.storageservice.allProducts.ProductAllInfo;
-import com.example.storageservice.models.DeliveryInfoList;
+import com.example.storageservice.model.DeliveryInfoList;
 import com.example.storageservice.utils.CsvReader;
 import com.example.storageservice.utils.FileTransferServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

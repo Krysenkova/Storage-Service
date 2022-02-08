@@ -31,12 +31,12 @@ public class CsvReader {
                 String material = attributes[3];
                 String colour = attributes[4];
                 String weight = attributes[5];
-                Double priceWithoutVat = Double.parseDouble(attributes[6]);
-                Double priceWithVat = Double.parseDouble(attributes[7]);
+                Double priceWithoutMwSt = Double.parseDouble(attributes[6]);
+                Double priceWithMwSt = Double.parseDouble(attributes[7]);
                 Long deliveryTime = (long) Integer.parseInt(attributes[8]);
                 Integer amount = Integer.parseInt(attributes[9]);
                 String location = attributes[10];
-                ProductAllInfo p = new ProductAllInfo(itemId, name, description, material, colour, weight, priceWithoutVat, priceWithVat, deliveryTime, amount, location);
+                ProductAllInfo p = new ProductAllInfo(itemId, name, description, material, colour, weight, priceWithoutMwSt, priceWithMwSt, deliveryTime, amount, location);
                 allInfo.add(p);
                 line = br.readLine();
             }

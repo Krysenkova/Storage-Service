@@ -22,8 +22,8 @@ public class ProductAllInfo {
     private String material;
     private String colour;
     private String weight;
-    private Double priceWithoutVat;
-    private Double priceWithVat;
+    private Double priceWithoutMwSt;
+    private Double priceWithMwSt;
     private Long deliveryTime;
     private Integer amount;
     @Column(name = "product_location")
@@ -35,15 +35,15 @@ public class ProductAllInfo {
     }
 
     public ProductAllInfo(Long itemId, String name, String description, String material, String colour, String weight,
-                          Double priceWithoutVat, Double priceWithVat, Long deliveryTime, Integer amount, String location) {
+                          Double priceWithoutMwSt, Double priceWithMwSt, Long deliveryTime, Integer amount, String location) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.material = material;
         this.colour = colour;
         this.weight = weight;
-        this.priceWithoutVat = priceWithoutVat;
-        this.priceWithVat = priceWithVat;
+        this.priceWithoutMwSt = priceWithoutMwSt;
+        this.priceWithMwSt = priceWithMwSt;
         this.deliveryTime = deliveryTime;
         this.amount = amount;
         this.location = location;

@@ -2,8 +2,10 @@ package com.example.storageservice.storage;
 
 import com.example.storageservice.allProducts.AllProductsService;
 import com.example.storageservice.allProducts.ProductAllInfo;
+
+import com.example.storageservice.model.DeliveryInfoList;
 import com.example.storageservice.exceptions.NoStorageFoundException;
-import com.example.storageservice.models.DeliveryInfoList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +41,12 @@ public class StorageController {
         if (storage != null) {
             return storage;
         } else throw new NoStorageFoundException("No item with id " + id + " was found");
+
     }
 
     @GetMapping("/download")
     public String downloadFile() {
+        logger.info("Downloading csv file");
         List<ProductAllInfo> products = storageService.downloadCsv();
         if (products != null) {
             allProductsService.addProducts(products);
