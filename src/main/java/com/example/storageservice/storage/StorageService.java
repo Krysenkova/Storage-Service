@@ -33,7 +33,6 @@ public class StorageService {
 
     public DeliveryInfoList getAll() {
         return new DeliveryInfoList(storageRepository.findAll());
-
     }
 
     public List<ProductAllInfo> downloadCsv() {

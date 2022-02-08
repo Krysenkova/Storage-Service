@@ -2,7 +2,10 @@ package com.example.storageservice.storage;
 
 import com.example.storageservice.allProducts.AllProductsService;
 import com.example.storageservice.allProducts.ProductAllInfo;
+
 import com.example.storageservice.model.DeliveryInfoList;
+import com.example.storageservice.exceptions.NoStorageFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +28,31 @@ public class StorageController {
     }
 
     @GetMapping("/all")
-    public DeliveryInfoList getAll() {
-        logger.info("Getting Info about delivery");
-        return storageService.getAll();
+    public DeliveryInfoList getAll() throws NoStorageFoundException {
+        DeliveryInfoList list = storageService.getAll();
+        if (list != null) {
+            return list;
+        } else throw new NoStorageFoundException("No storage info found");
     }
 
     @GetMapping("/{id}")
-    public Storage getById(@PathVariable(required = true) Long id) {
-        logger.info("Getting delivery info about product with id " + id);
-        return storageService.getDeliveryInfoByID(id);
+    public Storage getById(@PathVariable(required = true) Long id) throws NoStorageFoundException {
+        Storage storage = storageService.getDeliveryInfoByID(id);
+        if (storage != null) {
+            return storage;
+        } else throw new NoStorageFoundException("No item with id " + id + " was found");
+
     }
 
     @GetMapping("/download")
     public String downloadFile() {
         logger.info("Downloading csv file");
         List<ProductAllInfo> products = storageService.downloadCsv();
-        allProductsService.addProducts(products);
-        return "Success";
+        if (products != null) {
+            allProductsService.addProducts(products);
+            return "Success";
+        }
+        return "File came empty";
     }
 }
 
