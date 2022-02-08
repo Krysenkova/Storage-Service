@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,7 +22,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(StorageController.class)
-@TestPropertySource(properties = { "sftp.port = 2222", "sftp.remote.directory.download.filter=*.xxx"})
 public class StorageIntegrationTest {
 
     @Autowired
@@ -50,9 +48,7 @@ public class StorageIntegrationTest {
         List<Storage> storage = new ArrayList<>();
         storage.add(new Storage(1L, 5465785L, 5, "Berlin"));
         DeliveryInfoList dil = new DeliveryInfoList(storage);
-
         when(storageService.getAll()).thenReturn(dil);
-
         this.mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/storage/all"))
                 .andDo(print())
@@ -71,7 +67,6 @@ public class StorageIntegrationTest {
         storage.add(new Storage(2L, 4475785L, 3, "Moscow"));
         DeliveryInfoList dil = new DeliveryInfoList(storage);
         when(storageService.getDeliveryInfoByID(2L)).thenReturn(dil.getStorageList().get(1));
-
         this.mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/storage/2"))
                 .andDo(print())
@@ -82,4 +77,5 @@ public class StorageIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.amount").value(3))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.location").value("Moscow"));
     }
+
 }
