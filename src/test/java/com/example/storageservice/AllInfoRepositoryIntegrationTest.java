@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -19,7 +21,9 @@ public class AllInfoRepositoryIntegrationTest {
 
     @Test
     public void shouldAddProductsToDBTest() {
-        ProductAllInfo newInfo = new ProductAllInfo(1L, "nice name", "nice description",
+        UUID testItemId = UUID.randomUUID();
+
+        ProductAllInfo newInfo = new ProductAllInfo(testItemId, "nice name", "nice description",
                 "nice material", "nice color", "heavy", 30.0, 35.7,
                 753642L, 5, "Berlin");
         ProductAllInfo info = repository.save(newInfo);

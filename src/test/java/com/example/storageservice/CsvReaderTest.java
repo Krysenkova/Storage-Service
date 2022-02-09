@@ -11,13 +11,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 public class CsvReaderTest {
+    private UUID testItemId_1 = UUID.randomUUID();
+    private UUID testItemId_2 = UUID.randomUUID();
+    private UUID testItemId_3 = UUID.randomUUID();
 
-    String filename = "testFile.csv";
-    String s1 = "5; Fairy Lights; Bright chain of LED lights for indoor and outdoor use. 150 cm; glass; colourful; 0.1 kg.; 12.0; 14.280000000000001; 86400000; 9; Berlin, Germany";
-    String s2 = "7; Candy cane; Traditional sugar candy in a form of a cane; sugar; red and white; 0.05 kg.; 2.0; 2.38; 86400000; 11; Berlin, Germany";
-    String s3 = "9; Candle Arch; Electric arch with five candles; wood; beige; 0.2 kg.; 6.0; 7.140000000000001; 86400000; 13; Berlin, Germany";
+    private String filename = "testFile.csv";
+    private String s1 = testItemId_1 + "; Fairy Lights; Bright chain of LED lights for indoor and outdoor use. 150 cm; glass; colourful; 0.1 kg.; 12.0; 14.280000000000001; 86400000; 9; Berlin, Germany";
+    private String s2 = testItemId_2 + "; Candy cane; Traditional sugar candy in a form of a cane; sugar; red and white; 0.05 kg.; 2.0; 2.38; 86400000; 11; Berlin, Germany";
+    private String s3 = testItemId_3 + "; Candle Arch; Electric arch with five candles; wood; beige; 0.2 kg.; 6.0; 7.140000000000001; 86400000; 13; Berlin, Germany";
 
     @Test
     void readInfoFromFileWithOneProductTest() throws IOException {
@@ -27,7 +31,7 @@ public class CsvReaderTest {
 
         CsvReader reader = new CsvReader();
         List<ProductAllInfo> productsFromFile = reader.readAllInfo(filename);
-        ProductAllInfo expected = new ProductAllInfo(5L, "Fairy Lights", "Bright chain of LED lights for indoor and outdoor use. 150 cm", "glass", "colourful", "0.1 kg.", 12.0, 14.280000000000001, 86400000L, 9, "Berlin, Germany");
+        ProductAllInfo expected = new ProductAllInfo(testItemId_1, "Fairy Lights", "Bright chain of LED lights for indoor and outdoor use. 150 cm", "glass", "colourful", "0.1 kg.", 12.0, 14.280000000000001, 86400000L, 9, "Berlin, Germany");
         Assertions.assertEquals(expected.toString(), productsFromFile.get(0).toString());
     }
 
