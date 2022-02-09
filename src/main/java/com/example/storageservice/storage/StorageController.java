@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "api/storage")
@@ -36,7 +37,7 @@ public class StorageController {
     }
 
     @GetMapping("/{id}")
-    public Storage getById(@PathVariable(required = true) Long id) throws NoStorageFoundException {
+    public Storage getById(@PathVariable(required = true) UUID id) throws NoStorageFoundException {
         Storage storage = storageService.getDeliveryInfoByID(id);
         if (storage != null) {
             return storage;

@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "delivery_info")
@@ -14,7 +15,7 @@ public class Storage {
 
     @Id
     @Column(name = "item_id")   //do not know if we really need column annotations
-    private Long itemId;
+    private UUID itemId;
     @Column(name = "deliverytime")
     private Long deliveryTime;
     @Column(name="amount")
@@ -26,7 +27,7 @@ public class Storage {
 
     }
 
-    public Storage(Long itemId, Long deliveryTime, Integer amount, String location) {
+    public Storage(UUID itemId, Long deliveryTime, Integer amount, String location) {
         this.itemId = itemId;
         this.deliveryTime = deliveryTime;
         this.amount = amount;

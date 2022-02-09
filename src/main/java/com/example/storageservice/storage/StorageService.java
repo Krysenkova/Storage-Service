@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class StorageService {
@@ -25,7 +26,7 @@ public class StorageService {
         this.restTemplate = restTemplate;
     }
 
-    public Storage getDeliveryInfoByID(Long itemID) {
+    public Storage getDeliveryInfoByID(UUID itemID) {
         Optional<Storage> optionalStorage = storageRepository.findById(itemID);
         //TODO create custom exception e.g. StorageNotFoundException
         return optionalStorage.orElseThrow(() -> new NullPointerException("No storage found"));
