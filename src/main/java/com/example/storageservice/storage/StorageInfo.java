@@ -11,7 +11,7 @@ import java.util.UUID;
 @Table(name = "delivery_info")
 @Getter @Setter
 @ToString
-public class Storage {
+public class StorageInfo {
 
     @Id
     @Column(name = "item_id")   //do not know if we really need column annotations
@@ -23,11 +23,11 @@ public class Storage {
     @Column(name="product_location")
     private String location;
 
-    public Storage(){
+    public StorageInfo(){
 
     }
 
-    public Storage(UUID itemId, Long deliveryTime, Integer amount, String location) {
+    public StorageInfo(UUID itemId, Long deliveryTime, Integer amount, String location) {
         this.itemId = itemId;
         this.deliveryTime = deliveryTime;
         this.amount = amount;

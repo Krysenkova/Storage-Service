@@ -1,8 +1,8 @@
 package com.example.storageservice;
 
 import com.example.storageservice.allProducts.AllProductsService;
-import com.example.storageservice.model.DeliveryInfoList;
-import com.example.storageservice.storage.Storage;
+import com.example.storageservice.storage.StorageInfoList;
+import com.example.storageservice.storage.StorageInfo;
 import com.example.storageservice.storage.StorageController;
 import com.example.storageservice.storage.StorageService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(StorageController.class)
-public class StorageIntegrationTest {
+public class StorageInfoIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,12 +45,12 @@ public class StorageIntegrationTest {
     }
 
     @Test
-    public void shouldReturnAllDeliveryInfo() throws Exception {
+    public void shouldReturnAllStorageInfo() throws Exception {
         UUID testItemId = UUID.randomUUID();
 
-        List<Storage> storage = new ArrayList<>();
-        storage.add(new Storage(testItemId, 5465785L, 5, "Berlin"));
-        DeliveryInfoList dil = new DeliveryInfoList(storage);
+        List<StorageInfo> storageInfo = new ArrayList<>();
+        storageInfo.add(new StorageInfo(testItemId, 5465785L, 5, "Berlin"));
+        StorageInfoList dil = new StorageInfoList(storageInfo);
         when(storageService.getAll()).thenReturn(dil);
 
         this.mockMvc
@@ -65,15 +65,15 @@ public class StorageIntegrationTest {
     }
 
     @Test
-    public void shouldReturnDeliveryInfoForSpecifiedId() throws Exception {
+    public void shouldReturnStorageInfoForSpecifiedId() throws Exception {
         UUID testItemId_1 = UUID.randomUUID();
         UUID testItemId_2 = UUID.randomUUID();
 
-        List<Storage> storage = new ArrayList<>();
-        storage.add(new Storage(testItemId_1, 5465785L, 5, "Berlin"));
-        storage.add(new Storage(testItemId_2, 4475785L, 3, "Moscow"));
-        DeliveryInfoList dil = new DeliveryInfoList(storage);
-        when(storageService.getDeliveryInfoByID(testItemId_2)).thenReturn(dil.getStorageList().get(1));
+        List<StorageInfo> storageInfo = new ArrayList<>();
+        storageInfo.add(new StorageInfo(testItemId_1, 5465785L, 5, "Berlin"));
+        storageInfo.add(new StorageInfo(testItemId_2, 4475785L, 3, "Moscow"));
+        StorageInfoList dil = new StorageInfoList(storageInfo);
+        when(storageService.getStorageInfoByID(testItemId_2)).thenReturn(dil.getStorageInfoList().get(1));
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders.get("/api/storage/" + testItemId_2))

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface StorageRepository extends JpaRepository<Storage, UUID> {}
+public interface StorageRepository extends JpaRepository<StorageInfo, UUID> {}
 

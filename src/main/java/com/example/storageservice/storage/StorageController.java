@@ -2,8 +2,7 @@ package com.example.storageservice.storage;
 
 import com.example.storageservice.allProducts.AllProductsService;
 import com.example.storageservice.allProducts.ProductAllInfo;
-import com.example.storageservice.model.DeliveryInfoList;
-import com.example.storageservice.exceptions.NoStorageFoundException;
+import com.example.storageservice.exceptions.NoStorageInfoFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,20 +28,20 @@ public class StorageController {
 
     @GetMapping("/all")
     @Operation(summary = "Get all storage info from DB")
-    public DeliveryInfoList getAll() throws NoStorageFoundException {
-        DeliveryInfoList list = storageService.getAll();
+    public StorageInfoList getAll() throws NoStorageInfoFoundException {
+        StorageInfoList list = storageService.getAll();
         if (list != null) {
             return list;
-        } else throw new NoStorageFoundException("No storage info found");
+        } else throw new NoStorageInfoFoundException("No storage info found");
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get storage info for particular product from DB")
-    public Storage getById(@PathVariable(required = true) Long id) throws NoStorageFoundException {
-        Storage storage = storageService.getDeliveryInfoByID(id);
-        if (storage != null) {
-            return storage;
-        } else throw new NoStorageFoundException("No item with id " + id + " was found");
+    public StorageInfo getById(@PathVariable(required = true) UUID id) throws NoStorageInfoFoundException {
+        StorageInfo storageInfo = storageService.getStorageInfoByID(id);
+        if (storageInfo != null) {
+            return storageInfo;
+        } else throw new NoStorageInfoFoundException("No item with id " + id + " was found");
 
     }
 

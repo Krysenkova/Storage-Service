@@ -1,7 +1,6 @@
 package com.example.storageservice.storage;
 
 import com.example.storageservice.allProducts.ProductAllInfo;
-import com.example.storageservice.model.DeliveryInfoList;
 import com.example.storageservice.utils.CsvReader;
 import com.example.storageservice.utils.FileTransferServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,14 @@ public class StorageService {
         this.restTemplate = restTemplate;
     }
 
-    public Storage getDeliveryInfoByID(UUID itemID) {
-        Optional<Storage> optionalStorage = storageRepository.findById(itemID);
+    public StorageInfo getStorageInfoByID(UUID itemID) {
+        Optional<StorageInfo> optionalStorage = storageRepository.findById(itemID);
         //TODO create custom exception e.g. StorageNotFoundException
         return optionalStorage.orElseThrow(() -> new NullPointerException("No storage found"));
     }
 
-    public DeliveryInfoList getAll() {
-        return new DeliveryInfoList(storageRepository.findAll());
+    public StorageInfoList getAll() {
+        return new StorageInfoList(storageRepository.findAll());
     }
 
     public List<ProductAllInfo> downloadCsv() {
