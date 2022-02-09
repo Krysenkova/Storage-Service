@@ -1,7 +1,6 @@
 package com.example.storageservice;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import com.example.storageservice.storage.Storage;
 import com.example.storageservice.storage.StorageRepository;
 import org.junit.jupiter.api.BeforeAll;
