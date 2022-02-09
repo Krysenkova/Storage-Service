@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "all_info")
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @ToString
 public class ProductAllInfo {
     @Id
-    private Long itemId;
+    private UUID itemId;
     private String name;
     private String description;
     private String material;
@@ -34,7 +35,7 @@ public class ProductAllInfo {
     public ProductAllInfo() {
     }
 
-    public ProductAllInfo(Long itemId, String name, String description, String material, String colour, String weight,
+    public ProductAllInfo(UUID itemId, String name, String description, String material, String colour, String weight,
                           Double priceWithoutMwSt, Double priceWithMwSt, Long deliveryTime, Integer amount, String location) {
         this.itemId = itemId;
         this.name = name;

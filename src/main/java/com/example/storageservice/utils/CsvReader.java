@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CsvReader {
     public CsvReader() {
@@ -25,7 +26,7 @@ public class CsvReader {
             String line = br.readLine();
             while (line != null) {
                 String[] attributes = line.split("; ");
-                Long itemId = Long.parseLong(attributes[0]);
+                UUID itemId = UUID.fromString(attributes[0]);
                 String name = attributes[1];
                 String description = attributes[2];
                 String material = attributes[3];
