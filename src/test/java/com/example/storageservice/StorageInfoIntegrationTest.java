@@ -58,10 +58,10 @@ public class StorageInfoIntegrationTest {
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.storageList[0].itemId").value(testItemId.toString()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.storageList[0].deliveryTime").value(5465785L))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.storageList[0].amount").value(5))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.storageList[0].location").value("Berlin"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.storageInfoList[0].itemId").value(testItemId.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.storageInfoList[0].deliveryTime").value(5465785L))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.storageInfoList[0].amount").value(5))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.storageInfoList[0].location").value("Berlin"));
     }
 
     @Test
