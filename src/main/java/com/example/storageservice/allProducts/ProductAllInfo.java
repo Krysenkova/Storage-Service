@@ -23,7 +23,9 @@ public class ProductAllInfo {
     private String material;
     private String colour;
     private String weight;
+    @Column(name = "price_without_vat")
     private Double priceWithoutMwSt;
+    @Column(name = "price_with_vat")
     private Double priceWithMwSt;
     private Long deliveryTime;
     private Integer amount;

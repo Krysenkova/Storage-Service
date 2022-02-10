@@ -16,7 +16,6 @@ public class AllProductsService {
 
     public String addProducts(List<ProductAllInfo> list) {
         for (ProductAllInfo product : list) {
-            System.out.println(list);
             allProductsRepository.save(product);
         }
         return "Saved in DB";
